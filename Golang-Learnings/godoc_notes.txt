@@ -1,0 +1,30 @@
+------------------------------------------------------------------------------------------------------------
+godoc documentation:
+--------------------
+godoc installation: go get golang.org/x/tools/cmd/godoc
+
+--- create a go.mod file ---
+
+Host godoc server: godoc -http:6060
+
+In browser: localhost:6060/pkg/<package_name>
+
+Download documentation: godoc -http :6060 & wget -r -np -N -E -p -k http://localhost:8080/pkg/<package_name>
+
+-r: Enables recursive downloading. This tells wget to download the page and follow links to download additional files.
+-np: Stands for "no parent." This prevents wget from downloading files from parent directories of the specified URL.
+-N: Only download files that are newer than what you have locally. This helps to keep your files up-to-date.
+-E: Adjusts file extensions based on content type. For example, it will save HTML files with .html extensions.
+-p: Download all necessary files for displaying the page, such as images and stylesheets.
+-k: Converts links in downloaded documents so that they work locally. This ensures that the links in the downloaded 
+HTML files are correctly updated to reflect their new local paths.
+
+--> Stop the godoc Server: After downloading the documentation, you may want to stop the godoc server 
+if it is no longer needed. You can do this by killing the process running on that port.
+
+Convert into zip file to share: zip -r zipfile_name.zip localhost:6060
+
+reference: https://www.makeuseof.com/go-godoc-document-code-automatically/
+           https://nirdoshgautam.medium.com/a-guide-to-effective-go-documentation-952f346d073f
+
+------------------------------------------------------------------------------------------------------------
